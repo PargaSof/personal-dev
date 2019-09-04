@@ -1,0 +1,28 @@
+{
+	"dev_values_to_replace": "IR-ColartSQL04,bistakgendbdev,UK-LD9-BA2",
+	"IR-ColartSQL04": "LD9BA1-IR",
+	"bistakgendbdev": "bistakgendblive",
+	"UK-LD9-BA2": "UK-LD9-BA1",
+	"LD9BA1-IR_properties_typeProperties_linkedInfo_resourceId": {
+		"type": "string",
+		"defaultValue": "/subscriptions/901f-e1d706fa1669/resourcegroups/Bi_Prod/providers/Microsoft.DataFactory/factories/BIDataFactoryLive/integrationruntimes/LD9BA1-IR"
+	},
+	"LD9BA1-IR_typeProperties": {
+		"linkedInfo": {
+			"resourceId": "[parameters('LD9BA1-IR_properties_typeProperties_linkedInfo_resourceId')]",
+			"authorizationType": "Rbac"
+		}
+	},
+	"AzureDB": {
+		"typeProperties": {
+			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=@{linkedService().AzureFullyQualifiedServer};initial catalog=@{linkedService().AzureDBName};user id=BIDATA",
+			"encryptedCredential": "CIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkJJREFUQUZBQ1RPUllERVZfMjU5MmM5MjAtMWIyZS00MjM1LTk2MTQtZmMzNjMwNGIyYzlhIg0KfQ=="
+		}
+	},
+	"AzureBlob": {
+		"typeProperties": {
+			"connectionString": "DefaultEndpointsProtocol=https;AccountName=colartbalive;EndpointSuffix=core.windows.net;",
+			"encryptedCredential": "CIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkJJREFUQUZBQ1RPUllERVZfMzRiMGY4NjMtOGQ2OS00MjFlLWE5ZGMtOGIzYTA3NDI0YzA0Ig0KfQ"
+		}
+	}
+}

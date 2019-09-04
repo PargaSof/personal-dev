@@ -1,0 +1,4 @@
+{
+	"__previousMaxmastTables": ["imsto","imacc","imast","ndmas","oecit","oecmt","oecus","oedpt","oehdr","oeim","oelin","oemer","oempr","oemsc","oensi","oephdr","oeplst","oetrn"],
+	"maxmastTables": ["mfac","imfac","rthed","rtcen","mmres","pst","rtop","rtres","emod","rtmod","nvsto","nvbin","nvacc","nvxac","nvtrn","mmuom","imuom","imsu","imsul","pusup","imsup","puord","pulin","purel","pugrn"]
+}
