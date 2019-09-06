@@ -6,16 +6,20 @@
 - GenerateNewArmTemplateForDeployment
 	+ The python code
 - config
-	+ A dictionary with important configuration regarding the replacement or enrichemnt of values
+	+ A dictionary with important configuration regarding the replacement or enrichment of values
 	in the arm_template
 
 ## Version Control:
 
 Author: Sofoklis Vourekas
-Date: July 19 2019
+Date: 19 July 2019
 Release History:
 
-- 0.1.0
+- 0.1.1 - 06 September 2019
+	+ Fixed bug in function 'findalldependencies'- function was executing forever
+	+ Inserted comment inside the code
+
+- 0.1.0 - 19 July 2019
 	+ First proper release
 
 ## Reason for Development:
