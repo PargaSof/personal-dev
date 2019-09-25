@@ -15,6 +15,14 @@ Author: Sofoklis Vourekas
 Date: 19 July 2019
 Release History:
 
+- 0.1.2 - 25 September 2019
+	+ Due to the previous fix, dependency search loop wasn't producing an exhaustive dependencies list
+		- Reverted the findalldependecies method to the previous state
+		- Figured out why previous bug was forcing infinite loop iteration
+		- Added a controller variable that when consumed breaks off the loop
+		- Manage to get all dependencies no matter how deep the reside in the dependecies hierarchy
+	+ Changed the name of files produced to follow a clear naming pattern, in hope that the process can be productionized and standardized in the future for full CI/CD cycle
+
 - 0.1.1 - 06 September 2019
 	+ Fixed bug in function 'findalldependencies'- function was executing forever
 	+ Inserted comment inside the code

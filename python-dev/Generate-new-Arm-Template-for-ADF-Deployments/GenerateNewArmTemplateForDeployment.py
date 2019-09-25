@@ -1,9 +1,9 @@
 import json
+import time
 
 '''
 All Functions
 '''
-
 
 def replacer(text, replacement_list, replacement_dict):
     for item in replacement_list:
@@ -25,25 +25,24 @@ def cleanstring(unclean_string):
 def findalldependencies(json_block, pipeline_name):
 
     pipeline_dependencies_list = [pipeline_name]
-    pipeline_dependencies_list_unique = [pipeline_name]
+    pipeline_dependencies_list_unique = []
 
     for item in json_block:
         if item["name"].find(pipeline_name) > 0:
             for dependency in item["dependsOn"]:
                 pipeline_dependencies_list.append(cleanstring(dependency))
 
-    # SV debug 20190906 - Added new empty list
-    # appending to the previous one didn't work and below loop
-    # was executing forever
-    pipeline_dependencies_list2 = []
+    # SV debug 20190925 - added controller variable to kill infinite loops
+    controller = 100
     for name in pipeline_dependencies_list:
-        for resource in json_block:
-            if resource["name"].find(name) > 0:
-                for dependency in resource["dependsOn"]:
-                    pipeline_dependencies_list2.append(cleanstring(dependency))
-
-    # SV debug 20190906
-    pipeline_dependencies_list = pipeline_dependencies_list + pipeline_dependencies_list2
+        if controller > 0:
+            for resource in json_block:
+                if resource["name"].find(name) > 0:
+                    for dependency in resource["dependsOn"]:
+                        pipeline_dependencies_list.append(cleanstring(dependency))
+            controller -= 1
+        else:
+            break
 
     # Uniquify the above list
     for item in pipeline_dependencies_list:
@@ -136,9 +135,12 @@ End of Enrichment Block
 '''
 Write to file
 '''
+
+date_int = time.strftime('%Y%m%d')
+
 NewDataFactoryDeploymentFile = open(
-    "NewDataFactoryDeploymentFile_{}.json".format(data_factory_name), "w")
+    f"adfDevOps.{data_factory_name}_{IN_pipeline_name}__{date_int}.json", "w")
 NewDataFactoryDeploymentFile_parms = open(
-    "NewDataFactoryDeploymentFile_{}_parms.json".format(data_factory_name), "w")
+    f"adfDevOps.{data_factory_name}_{IN_pipeline_name}_parms__{date_int}.json", "w")
 NewDataFactoryDeploymentFile.write(prod_datafactory_string)
 NewDataFactoryDeploymentFile_parms.write(prod_datafactory_parms_string)
