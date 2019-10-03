@@ -1,0 +1,6 @@
+Python Version: 3.7.1
+
+requests == 2.21
+config == 0.4.0
+psycopg2 == 2.7.6.1
+schedule == 0.5.0

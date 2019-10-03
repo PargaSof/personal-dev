@@ -1,0 +1,8 @@
+{
+  "host": "localhost",
+  "database": "TMDB",
+  "user": "postgres",
+  "password":  "***",
+  "movies_api_url" : "https://api.themoviedb.org/3",
+  "movies_api_key" : "22769f93e53d529d430e103badbc71bd"
+}
