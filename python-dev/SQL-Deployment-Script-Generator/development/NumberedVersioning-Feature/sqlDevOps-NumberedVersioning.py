@@ -47,13 +47,9 @@ sqlDevOpsDirectoryLog = 'P:\\Colart\\Development\\Azure-Project\\__deployments\\
 # the full path to the sqlDevopsLog file
 sqlDevopsLogFilepath = f'{sqlDevOpsDirectoryLog}sqlDevopsLog.csv'
 
-# Ask user to insert the Parent Directory
+# User-Input: Parent Directory, Project Alias, Feature/Hotfix Name
 parentDir = input('Type in the parent directory of the features/hotfixes location: ')
-
-# Ask user to insert the Project Alias
 projectAlias = input('Type in the alias of the Project - e.g. Az, GDW: ')
-
-# Ask user to insert the Feature/Hotfix Name
 featureName = input('Type in the exact name of the folder the sql scripts reside in - e.g. Snapshot-Feature, j408: ')
 
 # File directory where all the sql code related to the deployment is stored
@@ -78,10 +74,13 @@ with open(f"{configDirectory}config.json", "r") as rj:
     config = json.load(rj)
     prodServerList = [config["dev_to_prod_values"][srv] for srv in serverList]
 
+# generate the dictionary that holds all max version values found in the log file per server per database
 max_versions_deployment_dict = create_max_versions_deployment_dict(sqlDevopsLogFilepath)
 
 # 8-int date to be appended to sql file
 dateInt = time.strftime('%Y%m%d')
+# 14-int datetime to be written in the log file
+datetimeInt = time.strftime('%Y%m%d%H%M%S')
 
 # create an empty list for storing the different sql depployment filenames
 # will be used to create new entries in sqlDevopsLog
@@ -111,7 +110,7 @@ for server in serverList:
                 sqlDeploymentFile.write(f'-- {item}\n{sqlRead}\n\n')
 
                 # create a tuple that will hold all deploy details and will be used to generate a distinct list of filenames deployed
-                full_deploy_details_tuple = (newServer,db,deploy_version_value,dateInt,featureName,sqlDeploymentFileName)
+                full_deploy_details_tuple = (newServer,db,deploy_version_value,datetimeInt,featureName,sqlDeploymentFileName)
                 sqlDeploymentFileList.append(full_deploy_details_tuple)
 
 # uniquify the list of sql files to be deployed
